@@ -2,16 +2,13 @@
 #define __LB_H__
 
 extern pros::Motor lb_mech;
-extern bool LB_ARMED;
 
-/*
+extern int LB_STATE;
 enum {
     LB_LOWERED,
     LB_ARMED,
-    LB_UP,
     LB_EXTENDED,
 };
-*/
 
 void update_lb();
 void update_lb_simple();

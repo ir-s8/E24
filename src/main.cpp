@@ -241,8 +241,14 @@ void awp_p_left() {    //blue
 
 }
 
+#define RED_GEAR_RATIO      36
+#define GREEN_GEAR_RATIO    18
+#define BLUE_GEAR_RATIO     6
+
 void autonomous() {
-    lb_mech.move_absolute(-28, 25);
+    lb_mech.move_absolute(-180, 80);
+    pros::lcd::print(6, "testing"); // y
+    
 
     //chassis.moveToPose(24, 48, 45, 1000, {.maxSpeed=127});
     //chassis.turnTo(90, 0, 9000);
@@ -272,7 +278,7 @@ void opcontrol() {
         int rightX = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
         
         update_intake();
-        update_lb_simple();
+        update_lb();
         clamp.driver_update_toggle();        
         autonm.driver_update_toggle();        
 
