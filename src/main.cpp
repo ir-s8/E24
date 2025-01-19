@@ -49,7 +49,7 @@ lemlib::ControllerSettings linearController(16, // proportional gain (kP)
 // angular motion controller
 lemlib::ControllerSettings angularController(2, // proportional gain (kP)
                                              0, // integral gain (kI)
-                                             10, // derivative gain (kD)
+                                             11, // derivative gain (kD)
                                              3, // anti windup
                                              1, // small error range, in degrees
                                              100, // small error range timeout, in milliseconds
@@ -246,11 +246,11 @@ void awp_p_left() {    //blue
 #define BLUE_GEAR_RATIO     6
 
 void autonomous() {
-    lb_mech.move_absolute(-180, 80);
-    pros::lcd::print(6, "testing"); // y
+    //lb_mech.move_absolute(-180, 80);
+    //pros::lcd::print(6, "testing"); // y
     
 
-    //chassis.moveToPose(24, 48, 45, 1000, {.maxSpeed=127});
+    chassis.moveToPoint(0, 24, 1000, {.maxSpeed=127});
     //chassis.turnTo(90, 0, 9000);
 
     //mg_rush_right();

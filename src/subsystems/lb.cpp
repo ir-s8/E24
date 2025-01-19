@@ -18,7 +18,7 @@ void update_lb() {
     bool toggle_1 = (input1 == 1 && li1 == 0);
     bool toggle_2 = (input2 != li2);
 
-    std::cout << toggle_1 << " " << toggle_2 << "\n";
+    //std::cout << toggle_1 << " " << toggle_2 << "\n";
     //pros::lcd::print(5, "toggle1: %s, toggle2: %s", toggle_1 ? "true" : "false", toggle_2 ? "true" : "false");
 
     li1 = input1; 
@@ -27,17 +27,17 @@ void update_lb() {
     if (toggle_1 && LB_STATE == LB_LOWERED) {
         lb_mech.move_absolute(-29, 28);
         LB_STATE = LB_ARMED;
-        std::cout << "lower -> armed" << std::endl;
+        //std::cout << "lower -> armed" << std::endl;
         return;
     } else if (toggle_1 && LB_STATE == LB_ARMED) {
         lb_mech.move_absolute(-210, 88);
         LB_STATE = LB_EXTENDED;
-        std::cout << "armed -> extended" << std::endl;
+        //std::cout << "armed -> extended" << std::endl;
         return;
-    } else if (toggle_2 && LB_STATE == LB_EXTENDED) {
+    } else if (toggle_2) {
         LB_STATE = LB_LOWERED;
         lb_mech.move_absolute(0-8, -64);
-        std::cout << "extended -> lowered" << std::endl;
+        //std::cout << "extended -> lowered" << std::endl;
         return;
     } 
 
