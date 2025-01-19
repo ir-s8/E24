@@ -130,7 +130,7 @@ ASSET(example_txt); // '.' replaced with "_" to make c++ happy
 //map points down
 
 
-void mg_rush_left() {   //red
+void awp_red() {   //red /w stake
     chassis.moveToPoint(2, -25, 2000, {.forwards=false, .minSpeed=110});    //80
     chassis.moveToPose(10, -51, -20, 1000, {.forwards=false, .maxSpeed=110});;
     chassis.waitUntilDone();
@@ -138,7 +138,7 @@ void mg_rush_left() {   //red
     
     pros::delay(280);
     intake.move_voltage(12000);
-    pros::delay(800);
+    pros::delay(880);
     chassis.moveToPoint(12, -32, 1000, {.maxSpeed=48}); //go to bottom red
     intake.move_voltage(0);     //
     chassis.waitUntilDone();    //
@@ -146,57 +146,84 @@ void mg_rush_left() {   //red
     chassis.moveToPoint(16, -28, 1000, {.maxSpeed=48});     //intake bottom red
     chassis.waitUntilDone();
 
-    pros::delay(600);       //score
+    //pros::delay(800);       //score
     intake.move_voltage(0);     //
+    
+    clamp.set_state(0);
+    chassis.moveToPose(53, 7, 44, 3200, {.maxSpeed=80}); //point
+    //chassis.moveToPose(48, 6, 48, 2500, {.maxSpeed=88}); 
+    lb_mech.move_absolute(-29, 28);      //lb up 
+    intake.move_voltage(11000);         //10000
+    chassis.waitUntilDone();
+    
+    intake.move_voltage(-1000);     
+    pros::delay(200);           //score on wall stake
+    lb_mech.move_absolute(-180, 88);        
+    pros::delay(800);           //score on wall stake
+    
+    chassis.moveToPoint(36, -4, 1500, {.forwards=false});   //drive back
+    pros::delay(200);
+    lb_mech.move_absolute(0, 60);  //reset_lb
+    
+    chassis.waitUntilDone();
+    chassis.moveToPoint(56, -22, 2500, {.maxSpeed=64});     //ladder
+    chassis.waitUntilDone();
+    autonm.set_state(1);
 
-    chassis.turnTo(36, -60, 1000); //face ladder
-    intake.move_voltage(0);
-    //clamp.set_state(0);
-    //pros::delay(500);           //release clamp
-
-    chassis.moveToPoint(53, -51, 1000, {.maxSpeed=55}); //go to ladder
-    chassis.tank(20, 20);
+    chassis.tank(10, 10);
+    
 } 
 
-void mg_rush_right() {   //blue
-    chassis.moveToPoint(2, -25, 2000, {.forwards=false, .minSpeed=80});
-    chassis.moveToPose(-12, -45, 22, 1000, {.forwards=false, .maxSpeed=100});;
+void awp_blue() {   //blue /w stake
+    chassis.moveToPoint(0, -26, 3000, {.forwards=false, .minSpeed=110});    //80
+    chassis.moveToPose(-10, -40, 23, 2000, {.forwards=false, .maxSpeed=110});;
     chassis.waitUntilDone();
     clamp.set_state(1);     //grab mg #1
+
+    //pros::delay(20000);
+    
     pros::delay(280);
-
     intake.move_voltage(12000);
-    pros::delay(1000);
-    chassis.moveToPoint(-16, -32, 1000, {.maxSpeed=48}); //go to bottom red
+    pros::delay(880);
+    chassis.moveToPoint(-12, -32, 1000, {.maxSpeed=48}); //go to bottom red
     intake.move_voltage(0);     //
     chassis.waitUntilDone();    //
     intake.move_voltage(12000);
-    chassis.moveToPoint(-17, -28, 1000, {.maxSpeed=48});     //intake bottom red
-    chassis.waitUntilDone();
-    pros::delay(1000);
-    intake.move_voltage(12000);
-    //chassis.moveToPoint(-8, -20, 1000);
-/*
-    chassis.moveToPoint(-16, -32, 1000, {.maxSpeed=51}); //go to bottom red
-    intake.move_voltage(0);     //
-    chassis.waitUntilDone();    //
-    intake.move_voltage(12000);
-    chassis.moveToPoint(-20, -36, 1000, {.maxSpeed=42});     //intake bottom red
+    chassis.moveToPoint(-16, -28, 1000, {.maxSpeed=48});     //intake bottom red
     chassis.waitUntilDone();
 
-    pros::delay(800);       //score
+    //pros::delay(800);       //score
     intake.move_voltage(0);     //
-*/
-   /* 
-    chassis.turnTo(-36, -60, 1000); //face ladder
-    intake.move_voltage(0);
-    //clamp.set_state(0);
-    //pros::delay(500);           //release clamp
+    
+    clamp.set_state(0);
+    chassis.moveToPoint(-52, 15, 3200, {.maxSpeed=72}); //point
+    //chassis.moveToPose(48, 6, 48, 2500, {.maxSpeed=88}); 
 
-    chassis.moveToPoint(-42, -55, 1000, {.maxSpeed=48}); //go to ladder
-    chassis.tank(20, 20);
-*/
+    lb_mech.move_absolute(-27, 28);      //lb up 
+    intake.move_voltage(11000);         //10000
+    chassis.waitUntilDone();
+    
+    //pros::delay(20000);
+
+    intake.move_voltage(-1000);     
+    pros::delay(200);           //score on wall stake
+    lb_mech.move_absolute(-180, 88);        
+    pros::delay(800);           //score on wall stake
+    
+    chassis.moveToPoint(-36, -4, 1500, {.forwards=false});   //drive back
+    pros::delay(200);
+    lb_mech.move_absolute(0, 60);  //reset_lb
+    
+    chassis.waitUntilDone();
+    chassis.moveToPoint(-56, -22, 3200, {.maxSpeed=36});     //ladder
+    chassis.waitUntilDone();
+    autonm.set_state(1);
+
+    intake.move_voltage(2000);
+
+    chassis.tank(50, 8);
 } 
+
 //x coor * -1
 /*
 void mg_rush_map_right() {
@@ -250,10 +277,11 @@ void autonomous() {
     //pros::lcd::print(6, "testing"); // y
     
 
-    chassis.moveToPoint(0, 24, 1000, {.maxSpeed=127});
+    //chassis.moveToPoint(0, 24, 2000, {.maxSpeed=127});
     //chassis.turnTo(90, 0, 9000);
 
-    //mg_rush_right();
+    awp_blue();
+    
 }
 
 #define MATH_E  2.718281828459045235360

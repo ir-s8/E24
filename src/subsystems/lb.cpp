@@ -40,7 +40,6 @@ void update_lb() {
         //std::cout << "extended -> lowered" << std::endl;
         return;
     } 
-
     
 }
 
