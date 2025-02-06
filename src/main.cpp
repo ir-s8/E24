@@ -130,6 +130,14 @@ ASSET(example_txt); // '.' replaced with "_" to make c++ happy
 //map points down
 
 
+void blue_reg() {
+    chassis.moveToPoint(21, -31, 1000, {.forwards=false});
+    chassis.waitUntilDone();
+    clamp.set_state(1);
+
+       
+}
+
 void awp_red() {   //red /w stake
     chassis.moveToPoint(2, -25, 2000, {.forwards=false, .minSpeed=110});    //80
     chassis.moveToPose(10, -51, -20, 1000, {.forwards=false, .maxSpeed=110});;
@@ -174,13 +182,22 @@ void awp_red() {   //red /w stake
     
 } 
 
+
+void temp() {
+    chassis.moveToPoint(-6, 28, 2300, {.minSpeed=110});
+    chassis.waitUntilDone();
+    autonm.set_state(1);
+    chassis.waitUntilDone();
+    //chassis.moveToPoint(0, 19, 2000, {.forwards=false, .minSpeed=110});
+}
+
+
 void awp_blue() {   //blue /w stake
-    chassis.moveToPoint(0, -26, 3000, {.forwards=false, .minSpeed=110});    //80
-    chassis.moveToPose(-10, -40, 23, 2000, {.forwards=false, .maxSpeed=110});;
+    chassis.moveToPoint(0, -26, 2800, {.forwards=false, .minSpeed=120});    //80
+    chassis.moveToPose(-10, -38, 28, 1600, {.forwards=false, .minSpeed=110});;
     chassis.waitUntilDone();
     clamp.set_state(1);     //grab mg #1
 
-    //pros::delay(20000);
     
     pros::delay(280);
     intake.move_voltage(12000);
@@ -189,13 +206,16 @@ void awp_blue() {   //blue /w stake
     intake.move_voltage(0);     //
     chassis.waitUntilDone();    //
     intake.move_voltage(12000);
-    chassis.moveToPoint(-16, -28, 1000, {.maxSpeed=48});     //intake bottom red
+    //chassis.moveToPoint(-13, -29, 2000, {.maxSpeed=48});     //intake bottom red
+    autonm.set_state(1);
+    chassis.moveToPoint(-21, -17, 2000, {.maxSpeed=53});     //intake bottom red
     chassis.waitUntilDone();
 
     //pros::delay(800);       //score
     intake.move_voltage(0);     //
     
-    clamp.set_state(0);
+    pros::delay(20000);         //end auton
+    //clamp.set_state(0);
     chassis.moveToPoint(-52, 15, 3200, {.maxSpeed=72}); //point
     //chassis.moveToPose(48, 6, 48, 2500, {.maxSpeed=88}); 
 
@@ -254,8 +274,8 @@ void awp_p_left() {    //blue
     pros::delay(500);
 
     intake.move_voltage(12000);
-    chassis.moveToPoint(0, -55, 1000);      //go to first stack
-    chassis.moveToPoint(4, -60, 1000, {.maxSpeed=80});  //intake first stac
+    //chassis.moveToPoint(0, -55, 1000);      //go to first stack
+    chassis.moveToPoint(4, -60, 1000, {.maxSpeed=60});  //intake first stac
     chassis.waitUntilDone();
 
     chassis.moveToPoint(4, -36, 1000, {.maxSpeed=80});  //go to 2nd stack
@@ -277,10 +297,10 @@ void autonomous() {
     //pros::lcd::print(6, "testing"); // y
     
 
-    //chassis.moveToPoint(0, 24, 2000, {.maxSpeed=127});
+    chassis.moveToPoint(0, 24, 2000, {.forwards=false});
     //chassis.turnTo(90, 0, 9000);
 
-    awp_blue();
+    //awp_red();
     
 }
 

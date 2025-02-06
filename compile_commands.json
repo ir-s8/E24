@@ -266,11 +266,11 @@
             "-funwind-tables",
             "--std=gnu++17",
             "-o",
-            "bin/subsystems/pneumatics.cpp.o",
-            "src\\subsystems\\pneumatics.cpp"
+            "bin/subsystems/clamp.cpp.o",
+            "src\\subsystems\\clamp.cpp"
         ],
         "directory": "C:\\Users\\tao\\robotest\\E24",
-        "file": "src\\subsystems\\pneumatics.cpp"
+        "file": "src\\subsystems\\clamp.cpp"
     },
     {
         "arguments": [
@@ -288,7 +288,7 @@
             "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/10.2.1/include-fixed",
             "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
-            "-iquote./include/subsystems/",
+            "-iquote./include/./",
             "-mcpu=cortex-a9",
             "-mfpu=neon-fp16",
             "-mfloat-abi=softfp",
@@ -305,11 +305,11 @@
             "-funwind-tables",
             "--std=gnu++17",
             "-o",
-            "bin/subsystems/clamp.cpp.o",
-            "src\\subsystems\\clamp.cpp"
+            "bin/main.cpp.o",
+            "src\\main.cpp"
         ],
         "directory": "C:\\Users\\tao\\robotest\\E24",
-        "file": "src\\subsystems\\clamp.cpp"
+        "file": "src\\main.cpp"
     },
     {
         "arguments": [
@@ -461,11 +461,11 @@
             "-funwind-tables",
             "--std=gnu++17",
             "-o",
-            "bin/subsystems/lb.cpp.o",
-            "src\\subsystems\\lb.cpp"
+            "bin/subsystems/pneumatics.cpp.o",
+            "src\\subsystems\\pneumatics.cpp"
         ],
         "directory": "C:\\Users\\tao\\robotest\\E24",
-        "file": "src\\subsystems\\lb.cpp"
+        "file": "src\\subsystems\\pneumatics.cpp"
     },
     {
         "arguments": [
@@ -483,7 +483,7 @@
             "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/10.2.1/include-fixed",
             "-isystemc:\\program files\\pros\\toolchain\\usr\\bin\\../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/include",
             "-iquote./include",
-            "-iquote./include/./",
+            "-iquote./include/subsystems/",
             "-mcpu=cortex-a9",
             "-mfpu=neon-fp16",
             "-mfloat-abi=softfp",
@@ -500,10 +500,10 @@
             "-funwind-tables",
             "--std=gnu++17",
             "-o",
-            "bin/main.cpp.o",
-            "src\\main.cpp"
+            "bin/subsystems/lb.cpp.o",
+            "src\\subsystems\\lb.cpp"
         ],
         "directory": "C:\\Users\\tao\\robotest\\E24",
-        "file": "src\\main.cpp"
+        "file": "src\\subsystems\\lb.cpp"
     }
 ]
