@@ -35,7 +35,7 @@ lemlib::Drivetrain drivetrain(&leftMotors, // left motor group
 );
 
 // lateral motion controller
-lemlib::ControllerSettings linearController(16, // proportional gain (kP)
+lemlib::ControllerSettings linearController(9, // proportional gain (kP)
                                             0, // integral gain (kI)
                                             0, // derivative gain (kD)
                                             2, // anti windup
@@ -49,7 +49,7 @@ lemlib::ControllerSettings linearController(16, // proportional gain (kP)
 // angular motion controller
 lemlib::ControllerSettings angularController(2, // proportional gain (kP)
                                              0, // integral gain (kI)
-                                             11, // derivative gain (kD)
+                                             8, // derivative gain (kD)
                                              3, // anti windup
                                              1, // small error range, in degrees
                                              100, // small error range timeout, in milliseconds
@@ -297,8 +297,8 @@ void autonomous() {
     //pros::lcd::print(6, "testing"); // y
     
 
-    chassis.moveToPoint(0, 24, 2000, {.forwards=false});
-    //chassis.turnTo(90, 0, 9000);
+    //chassis.moveToPoint(0, 24, 9000);
+    chassis.turnTo(1000, 0, 9000);
 
     //awp_red();
     
