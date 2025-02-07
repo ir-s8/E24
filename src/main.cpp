@@ -157,7 +157,7 @@ void awp_red() {   //red /w stake
     //pros::delay(800);       //score
     intake.move_voltage(0);     //
     
-    clamp.set_state(0);
+    //clamp.set_state(0);
     chassis.moveToPose(53, 7, 44, 3200, {.maxSpeed=80}); //point
     //chassis.moveToPose(48, 6, 48, 2500, {.maxSpeed=88}); 
     lb_mech.move_absolute(-29, 28);      //lb up 
@@ -172,11 +172,23 @@ void awp_red() {   //red /w stake
     chassis.moveToPoint(36, -4, 1500, {.forwards=false});   //drive back
     pros::delay(200);
     lb_mech.move_absolute(0, 60);  //reset_lb
-    
+
+    //move to ring position
+    chassis.moveToPoint(49, -3, 1500, {.forwards=false});  
+    chassis.waitUntilDone();
+    // hook onto ring
+    autonm.set_state(1);
+    chassis.moveToPoint(38, 1, 1500, {.forwards=false});  
+    chassis.waitUntilDone();
+    //take doinker back and intake ring
+    autonm.set_state(0);
+    intake.move_voltage(11000);
+    chassis.moveToPoint(52, 1, 1500); 
+
     chassis.waitUntilDone();
     chassis.moveToPoint(56, -22, 2500, {.maxSpeed=64});     //ladder
+    intake.move_voltage(0); 
     chassis.waitUntilDone();
-    autonm.set_state(1);
 
     chassis.tank(10, 10);
     
@@ -298,9 +310,7 @@ void autonomous() {
     
 
     //chassis.moveToPoint(0, 24, 9000);
-    chassis.turnTo(1000, 0, 9000);
-
-    //awp_red();
+    awp_red();
     
 }
 
