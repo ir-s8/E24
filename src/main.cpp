@@ -172,19 +172,19 @@ void awp_red() {   //red /w stake
     chassis.moveToPoint(36, -4, 1500, {.forwards=false});   //drive back
     pros::delay(200);
     lb_mech.move_absolute(0, 60);  //reset_lb
-
+//
     //move to ring position
     chassis.moveToPoint(49, -3, 1500, {.forwards=false});  
     chassis.waitUntilDone();
     // hook onto ring
+    chassis.moveToPoint(38, 1, 1500);  
     autonm.set_state(1);
-    chassis.moveToPoint(38, 1, 1500, {.forwards=false});  
     chassis.waitUntilDone();
     //take doinker back and intake ring
     autonm.set_state(0);
     intake.move_voltage(11000);
     chassis.moveToPoint(52, 1, 1500); 
-
+//
     chassis.waitUntilDone();
     chassis.moveToPoint(56, -22, 2500, {.maxSpeed=64});     //ladder
     intake.move_voltage(0); 
