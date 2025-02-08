@@ -234,9 +234,13 @@ void close_red() {
     pros::delay(800);
     lb_mech.move_absolute(0-8, -64);
     pros::delay(800);
-    chassis.moveToPoint(0, 0, 2300, {.forwards=false});
+    chassis.moveToPoint(-5, -5, 2300, {.forwards=false});
     chassis.waitUntilDone();
-    chassis.moveToPoint(10,15,2000);
+    chassis.moveToPoint(25,19,2000, {.forwards=false, .maxSpeed=90});
+    intake.move_voltage(12000);
+    chassis.waitUntilDone();
+    pros::delay(800);
+    intake.move_voltage(0);
     /*lb_mech.move_absolute(-29, 28); //lb armed
     chassis.turnTo(270, 4000);
     chassis.moveToPoint(8, 5, 2300); //turn to lady brown position
