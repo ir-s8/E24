@@ -6,7 +6,8 @@ extern pros::Motor lb_mech;
 extern int LB_STATE;
 enum {
     LB_LOWERED,
-    LB_ARMED,
+    LB_ARMED1,
+    LB_ARMED2,
     LB_EXTENDED,
 };
 

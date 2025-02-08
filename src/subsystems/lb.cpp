@@ -25,16 +25,22 @@ void update_lb() {
     li2 = input2; 
 
     if (toggle_1 && LB_STATE == LB_LOWERED) {
-        lb_mech.move_absolute(-26, 28);
-        LB_STATE = LB_ARMED;
+        lb_mech.move_absolute(-23, 28);
+        LB_STATE = LB_ARMED1;
         //std::cout << "lower -> armed" << std::endl;
         return;
-    } else if (toggle_1 && LB_STATE == LB_ARMED) {
-        lb_mech.move_absolute(-210, 88);
+    } else if (toggle_1 && LB_STATE == LB_ARMED1) {
+        lb_mech.move_absolute(-100, 88);
+        LB_STATE = LB_ARMED2;
+        //std::cout << "armed -> extended" << std::endl;
+        return;
+    } else if (toggle_1 && LB_STATE == LB_ARMED2) {
+        lb_mech.move_absolute(-180, 88);
         LB_STATE = LB_EXTENDED;
         //std::cout << "armed -> extended" << std::endl;
         return;
-    } else if (toggle_2) {
+    } 
+    else if (toggle_2) {
         LB_STATE = LB_LOWERED;
         lb_mech.move_absolute(0-8, -64);
         //std::cout << "extended -> lowered" << std::endl;

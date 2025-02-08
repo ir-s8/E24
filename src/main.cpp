@@ -139,25 +139,59 @@ void blue_reg() {
 }
 
 void awp_red() {   //red /w stake
-    chassis.moveToPoint(2, -25, 2000, {.forwards=false, .minSpeed=110});    //80
-    chassis.moveToPose(10, -51, -20, 1000, {.forwards=false, .maxSpeed=110});;
+    chassis.moveToPoint(2, -26, 2000, {.forwards=false, .minSpeed=110});    //80
+    //chassis.moveToPoint(6, -20, 2000, {.forwards=false, .minSpeed=110});    //80
+    chassis.moveToPose(10, -45, -20, 1000, {.forwards=false, .maxSpeed=110});;
     chassis.waitUntilDone();
     clamp.set_state(1);     //grab mg #1
-    
     pros::delay(280);
     intake.move_voltage(12000);
-    pros::delay(880);
-    chassis.moveToPoint(12, -32, 1000, {.maxSpeed=48}); //go to bottom red
+    pros::delay(1000);
+
+    chassis.moveToPoint(12, -32, 1000, {.maxSpeed=44}); //go to bottom red
+    pros::delay(1000);
     intake.move_voltage(0);     //
     chassis.waitUntilDone();    //
     intake.move_voltage(12000);
     chassis.moveToPoint(16, -28, 1000, {.maxSpeed=48});     //intake bottom red
     chassis.waitUntilDone();
-
-    //pros::delay(800);       //score
+    pros::delay(1000);       //
     intake.move_voltage(0);     //
+    clamp.set_state(0);
+
     
-    //clamp.set_state(0);
+
+//2nd mogo
+    chassis.moveToPoint(31, -40, 2000, {.forwards=false, .minSpeed=110});    //move there
+    chassis.waitUntilDone();
+    clamp.set_state(1);     //grab mg #2
+    pros::delay(280);
+    intake.move_voltage(12000);//intake bottom red onto it
+    pros::delay(880);
+    intake.move_voltage(0); 
+/*
+    lb_mech.move_absolute(-29, 28); //lb up
+    chassis.moveToPoint(48, -17, 2000);  //move to doink ring position
+    chassis.waitUntilDone();
+    autonm.set_state(1); //put doinker down
+    chassis.moveToPoint(47, -15, 2000, {.forwards=false, .minSpeed=110}); //chassis move back
+    chassis.waitUntilDone();
+    chassis.moveToPoint(47, -18, 2000); //chassis move forward
+    intake.move_voltage(12000);//chassis intake
+    pros::delay(800);
+    intake.move_voltage(0);
+    chassis.moveToPoint(57, 0, 2000); //move to lb position
+    chassis.waitUntilDone();
+    lb_mech.move_absolute(-180, 88);  //lb down
+    pros::delay(200);
+    lb_mech.move_absolute(0-8, -64); //lb return to normal
+
+    chassis.moveToPoint(56, -22, 2500, {.maxSpeed=64});     //ladder
+    chassis.waitUntilDone();
+    chassis.tank(10, 10);
+//
+
+    /*
     chassis.moveToPose(53, 7, 44, 3200, {.maxSpeed=80}); //point
     //chassis.moveToPose(48, 6, 48, 2500, {.maxSpeed=88}); 
     lb_mech.move_absolute(-29, 28);      //lb up 
@@ -174,7 +208,7 @@ void awp_red() {   //red /w stake
     lb_mech.move_absolute(0, 60);  //reset_lb
 //
     //move to ring position
-    chassis.moveToPoint(49, -3, 1500, {.forwards=false});  
+    chassis.moveToPoint(49, -3, 1500);  
     chassis.waitUntilDone();
     // hook onto ring
     chassis.moveToPoint(38, 1, 1500);  
@@ -190,9 +224,36 @@ void awp_red() {   //red /w stake
     intake.move_voltage(0); 
     chassis.waitUntilDone();
 
-    chassis.tank(10, 10);
+    chassis.tank(10, 10);*/
     
 } 
+
+void close_red() {
+    chassis.moveToPoint(0, 8, 2300);
+    lb_mech.move_absolute(-180, 88);  //lb down
+    pros::delay(800);
+    lb_mech.move_absolute(0-8, -64);
+    pros::delay(800);
+    chassis.moveToPoint(0, 0, 2300, {.forwards=false});
+    chassis.waitUntilDone();
+    chassis.moveToPoint(10,15,2000);
+    /*lb_mech.move_absolute(-29, 28); //lb armed
+    chassis.turnTo(270, 4000);
+    chassis.moveToPoint(8, 5, 2300); //turn to lady brown position
+    chassis.turnTo(8, 5, 2000);
+    chassis.waitUntilDone();
+    pros::delay(400);
+    lb_mech.move_absolute(-180, 88);  //lb down
+    /*
+    pros::delay(800);
+    lb_mech.move_absolute(0-8, -64); //lb return to normal
+    chassis.moveToPoint(0, -1, 2300, {.forwards=false}); //drive back
+    chassis.waitUntilDone();
+    chassis.moveToPoint(8, 23, 2300); //drive forward to rings
+    */
+
+
+}
 
 
 void temp() {
@@ -310,7 +371,7 @@ void autonomous() {
     
 
     //chassis.moveToPoint(0, 24, 9000);
-    awp_red();
+    close_red();
     
 }
 
