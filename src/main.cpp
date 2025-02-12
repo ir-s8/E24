@@ -138,6 +138,38 @@ void blue_reg() {
        
 }
 
+void mogo_red(){
+    chassis.moveToPoint(0, 10, 2000, {.minSpeed=120});
+    chassis.moveToPoint(-2, 21, 2000, {.minSpeed=120});    //80
+    //chassis.moveToPose(0, 45, -20, 1000, {.maxSpeed=120});;
+    chassis.waitUntilDone();
+    pros::delay(200);
+    autonm.set_state(1);     //grab mg with doinker
+    pros::delay(400);
+    chassis.moveToPoint(-1, 18, 1000, {.forwards = false, .maxSpeed=120}); //drive backwards
+    chassis.waitUntilDone();
+    autonm.set_state(0);
+    pros::delay(200);
+    chassis.turnTo(8,0,1000);
+    chassis.moveToPoint(-3, 32, 1000, {.forwards = false, .maxSpeed=120});
+    chassis.waitUntilDone();
+    clamp.set_state(1);
+    intake.move_voltage(12000);
+    pros::delay(2000);
+    intake.move_voltage(0);
+
+    //chassis.moveToPoint(-1, 25, 1000, {.forwards = false, .minSpeed=120});  
+    //chassis.waitUntilDone();
+    /*
+    intake.move_voltage(12000);
+    chassis.moveToPose(11, -30, -20, 1000, {.minSpeed=120});;
+    chassis.waitUntilDone();
+    pros::delay(2000);
+    intake.move_voltage(0);
+    */
+    
+}
+
 void awp_red() {   //red /w stake
     chassis.moveToPoint(2, -26, 2000, {.forwards=false, .minSpeed=110});    //80
     //chassis.moveToPoint(6, -20, 2000, {.forwards=false, .minSpeed=110});    //80
@@ -224,40 +256,9 @@ void awp_red() {   //red /w stake
     intake.move_voltage(0); 
     chassis.waitUntilDone();
 
-    chassis.tank(10, 10);*/
+    chassis.tank(10, 10);
     
 } 
-
-void close_red() {
-    chassis.moveToPoint(0, 8, 2300);
-    lb_mech.move_absolute(-180, 88);  //lb down
-    pros::delay(800);
-    lb_mech.move_absolute(0-8, -64);
-    pros::delay(800);
-    chassis.moveToPoint(-5, -5, 2300, {.forwards=false});
-    chassis.waitUntilDone();
-    chassis.moveToPoint(25,19,2000, {.forwards=false, .maxSpeed=90});
-    intake.move_voltage(12000);
-    chassis.waitUntilDone();
-    pros::delay(800);
-    intake.move_voltage(0);
-    /*lb_mech.move_absolute(-29, 28); //lb armed
-    chassis.turnTo(270, 4000);
-    chassis.moveToPoint(8, 5, 2300); //turn to lady brown position
-    chassis.turnTo(8, 5, 2000);
-    chassis.waitUntilDone();
-    pros::delay(400);
-    lb_mech.move_absolute(-180, 88);  //lb down
-    /*
-    pros::delay(800);
-    lb_mech.move_absolute(0-8, -64); //lb return to normal
-    chassis.moveToPoint(0, -1, 2300, {.forwards=false}); //drive back
-    chassis.waitUntilDone();
-    chassis.moveToPoint(8, 23, 2300); //drive forward to rings
-    */
-
-
-}
 
 
 void temp() {
@@ -271,7 +272,7 @@ void temp() {
 
 void awp_blue() {   //blue /w stake
     chassis.moveToPoint(0, -26, 2800, {.forwards=false, .minSpeed=120});    //80
-    chassis.moveToPose(-10, -38, 28, 1600, {.forwards=false, .minSpeed=110});;
+    chassis.moveToPose(-10, -47, 28, 1600, {.forwards=false, .maxSpeed=109});;
     chassis.waitUntilDone();
     clamp.set_state(1);     //grab mg #1
 
@@ -284,7 +285,7 @@ void awp_blue() {   //blue /w stake
     chassis.waitUntilDone();    //
     intake.move_voltage(12000);
     //chassis.moveToPoint(-13, -29, 2000, {.maxSpeed=48});     //intake bottom red
-    autonm.set_state(1);
+    //autonm.set_state(1);
     chassis.moveToPoint(-21, -17, 2000, {.maxSpeed=53});     //intake bottom red
     chassis.waitUntilDone();
 
@@ -375,7 +376,7 @@ void autonomous() {
     
 
     //chassis.moveToPoint(0, 24, 9000);
-    close_red();
+    awp_red();
     
 }
 
@@ -417,3 +418,4 @@ void opcontrol() {
         pros::delay(10);
     }
 }
+
