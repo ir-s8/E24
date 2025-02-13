@@ -139,34 +139,50 @@ void blue_reg() {
 }
 
 void mogo_red(){
-    chassis.moveToPoint(0, 10, 2000, {.minSpeed=120});
-    chassis.moveToPoint(-2, 21, 2000, {.minSpeed=120});    //80
-    //chassis.moveToPose(0, 45, -20, 1000, {.maxSpeed=120});;
+    chassis.moveToPoint(0, 16, 2000, {.minSpeed=120}); //move mostly straight forward
+    chassis.moveToPoint(-2, 22, 2000, {.minSpeed=120});  //curve and go to mogo
     chassis.waitUntilDone();
     pros::delay(200);
     autonm.set_state(1);     //grab mg with doinker
     pros::delay(400);
-    chassis.moveToPoint(-1, 18, 1000, {.forwards = false, .maxSpeed=120}); //drive backwards
+    chassis.moveToPoint(-1, 18, 1000, {.forwards = false, .minSpeed=120}); //drive backwards w doinker
     chassis.waitUntilDone();
-    autonm.set_state(0);
+    autonm.set_state(0); //let go of doinker
+    pros::delay(100);
+    chassis.turnTo(8,0,1000); //turn 180
+    chassis.moveToPoint(-3, 32.0, 1000, {.forwards = false, .maxSpeed=110}); // drive into mogo from back
+    chassis.waitUntilDone();
+    clamp.set_state(1); //clamp
     pros::delay(200);
-    chassis.turnTo(8,0,1000);
-    chassis.moveToPoint(-3, 32, 1000, {.forwards = false, .maxSpeed=120});
+    intake.move_voltage(12000); //intake preload
+    pros::delay(2000);
+    chassis.turnTo(-78, 80, 1000);
+    chassis.moveToPoint(-16, 38, 2000); //intake 2nd ring
+    chassis.waitUntilDone();
+    pros::delay(200);
+    intake.move_voltage(0);
+    clamp.set_state(0);
+    chassis.moveToPoint(-30, 34, 2000, {.forwards = false});
     chassis.waitUntilDone();
     clamp.set_state(1);
-    intake.move_voltage(12000);
+    pros::delay(100);
+    intake.move_voltage(12000); //score 2nd ring
     pros::delay(2000);
     intake.move_voltage(0);
-
-    //chassis.moveToPoint(-1, 25, 1000, {.forwards = false, .minSpeed=120});  
-    //chassis.waitUntilDone();
-    /*
-    intake.move_voltage(12000);
-    chassis.moveToPose(11, -30, -20, 1000, {.minSpeed=120});;
+    chassis.moveToPoint(-43, 18, 2000);
     chassis.waitUntilDone();
-    pros::delay(2000);
+    autonm.set_state(1);
+    pros::delay(400);
+    chassis.moveToPoint(-41, 22, 2000);
+    chassis.waitUntilDone();
+    chassis.turnTo(-43, 18, 2000);
+    lb_mech.move_absolute(-29, 28);
+    intake.move_voltage(12000);
+    chassis.moveToPoint(-43, 13, 2000);
+    pros::delay(1000);
     intake.move_voltage(0);
-    */
+    //chassis.moveToPoint(-36, 16, 2000, {.forwards = false});
+
     
 }
 
@@ -257,6 +273,7 @@ void awp_red() {   //red /w stake
     chassis.waitUntilDone();
 
     chassis.tank(10, 10);
+*/
     
 } 
 
@@ -376,7 +393,7 @@ void autonomous() {
     
 
     //chassis.moveToPoint(0, 24, 9000);
-    awp_red();
+    mogo_red();
     
 }
 
