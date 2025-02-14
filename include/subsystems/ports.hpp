@@ -20,7 +20,8 @@
 //-------------------------
 
 //---------sensors----------
-#define IMU_PORT        12
+#define IMU_PORT        13
+#define OP_PORT         19
 //--------------------------
 
 //---------pneumatics----------

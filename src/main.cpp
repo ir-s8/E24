@@ -134,8 +134,6 @@ void blue_reg() {
     chassis.moveToPoint(21, -31, 1000, {.forwards=false});
     chassis.waitUntilDone();
     clamp.set_state(1);
-
-       
 }
 
 void mogo_red(){
@@ -239,7 +237,7 @@ void awp_red() {   //red /w stake
     chassis.tank(10, 10);
 //
 
-    /*
+    
     chassis.moveToPose(53, 7, 44, 3200, {.maxSpeed=80}); //point
     //chassis.moveToPose(48, 6, 48, 2500, {.maxSpeed=88}); 
     lb_mech.move_absolute(-29, 28);      //lb up 
@@ -277,6 +275,10 @@ void awp_red() {   //red /w stake
     
 } 
 
+enum {
+    RED = 50,
+    BLUE = 200
+}
 
 void temp() {
     chassis.moveToPoint(-6, 28, 2300, {.minSpeed=110});
@@ -387,13 +389,37 @@ void awp_p_left() {    //blue
 #define GREEN_GEAR_RATIO    18
 #define BLUE_GEAR_RATIO     6
 
+void red_ring_rush() {
+    clamp.set_state(1);
+    chassis.turnTo(-55, 84, 1000);
+    lb_mech.move_absolute(-182, 88);
+    pros::delay(200);
+
+    chassis.moveToPoint(16, -28, 1500, {.forwards=false});
+    lb_mech.move_absolute(8, 64);
+    chassis.waitUntilDone();
+    clamp.set_state(0);
+
+    chassis.moveToPoint(35, -7, 1500);
+    intake.move_voltage(11000);
+    chassis.turnTo(49, -50, 1500);
+    chassis.waitUntilDone();
+    chassis.moveToPoint(49, -50, 3600, {.maxSpeed=88});
+
+    chassis.waitUntilDone();
+    intake.move_voltage(0);
+}    
+
+
+
 void autonomous() {
     //lb_mech.move_absolute(-180, 80);
     //pros::lcd::print(6, "testing"); // y
     
 
     //chassis.moveToPoint(0, 24, 9000);
-    mogo_red();
+    //mogo_red();
+    red_ring_rush();
     
 }
 
