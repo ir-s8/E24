@@ -20,7 +20,7 @@
 //-------------------------
 
 //---------sensors----------
-#define IMU_PORT        13
+#define IMU_PORT        8
 #define OP_PORT         19
 //--------------------------
 

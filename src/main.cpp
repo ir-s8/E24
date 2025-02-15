@@ -274,12 +274,12 @@ void awp_red() {   //red /w stake
 */
     
 } 
-
+/*
 enum {
     RED = 50,
     BLUE = 200
 }
-
+*/
 void temp() {
     chassis.moveToPoint(-6, 28, 2300, {.minSpeed=110});
     chassis.waitUntilDone();
@@ -391,25 +391,83 @@ void awp_p_left() {    //blue
 
 void red_ring_rush() {
     clamp.set_state(1);
-    chassis.turnTo(-55, 84, 1000);
+    chassis.turnTo(-71, 69, 1000);
     lb_mech.move_absolute(-182, 88);
-    pros::delay(200);
+    pros::delay(230);
 
-    chassis.moveToPoint(16, -28, 1500, {.forwards=false});
-    lb_mech.move_absolute(8, 64);
+    chassis.moveToPoint(10, -34, 1500, {.forwards=false});
+
+    lb_mech.move_absolute(16, 64);
     chassis.waitUntilDone();
     clamp.set_state(0);
 
-    chassis.moveToPoint(35, -7, 1500);
+    chassis.moveToPoint(33, -32, 1500);
     intake.move_voltage(11000);
-    chassis.turnTo(49, -50, 1500);
+    chassis.moveToPoint(36, -34, 1500, {.maxSpeed=30});
     chassis.waitUntilDone();
-    chassis.moveToPoint(49, -50, 3600, {.maxSpeed=88});
+    pros::delay(600);       //intake far red ring
 
+    chassis.moveToPoint(5, -15, 2000);//4
     chassis.waitUntilDone();
     intake.move_voltage(0);
+    pros::delay(200);
+    autonm.set_state(1);
+    pros::delay(200);
+    chassis.moveToPoint(6, -26, 1200, {.forwards=false, .maxSpeed=64});
+    chassis.waitUntilDone();
+    pros::delay(200);
+    autonm.set_state(0);
+
+    intake.move_voltage(11000);
+    chassis.moveToPoint(-8, -18, 1600, {.maxSpeed=68});   
+    pros::delay(1000);
+
+    chassis.moveToPoint(-6, -28, 1600, {.maxSpeed=53});
+    pros::delay(200); 
+    intake.move_voltage(0);
+    chassis.waitUntilDone();
+
 }    
 
+
+void blue_ring_rush() {
+    clamp.set_state(1);
+    chassis.turnTo(71, 69, 1000);
+    lb_mech.move_absolute(-182, 88);
+    pros::delay(230);
+
+    chassis.moveToPoint(-10, -34, 1500, {.forwards=false});
+
+    lb_mech.move_absolute(16, 64);
+    chassis.waitUntilDone();
+    clamp.set_state(0);
+
+    chassis.moveToPoint(-33, -32, 1500);
+    intake.move_voltage(11000);
+    chassis.moveToPoint(-36, -34, 1500, {.maxSpeed=30});
+    chassis.waitUntilDone();
+    pros::delay(600);       //intake far red ring
+
+    chassis.moveToPoint(-5, -15, 2000);//4
+    chassis.waitUntilDone();
+    intake.move_voltage(0);
+    pros::delay(200);
+    autonm.set_state(1);
+    pros::delay(200);
+    chassis.moveToPoint(-6, -26, 1200, {.forwards=false, .maxSpeed=64});
+    chassis.waitUntilDone();
+    pros::delay(200);
+    autonm.set_state(0);
+
+    intake.move_voltage(11000);
+    chassis.moveToPoint(8, -18, 1600, {.maxSpeed=68});   
+    pros::delay(1000);
+
+    chassis.moveToPoint(6, -28, 1600, {.maxSpeed=53});
+    pros::delay(200); 
+    intake.move_voltage(0);
+    chassis.waitUntilDone();
+}    
 
 
 void autonomous() {
@@ -452,8 +510,6 @@ void opcontrol() {
         pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
         pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
         pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
-
-        pros::lcd::print(4, "Y: %lf", lb_mech.get_position()); // y
 
         chassis.curvature(leftY, rightX);
 
