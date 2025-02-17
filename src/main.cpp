@@ -423,12 +423,34 @@ void red_ring_rush() {
     pros::delay(1000);
 
     chassis.moveToPoint(-6, -28, 1600, {.maxSpeed=53});
-    pros::delay(200); 
+    pros::delay(800); 
     intake.move_voltage(0);
     chassis.waitUntilDone();
 
 }    
 
+void blue_mg_temp() {       //1r + 1 as + 1r + 1 mg(keep)
+    clamp.set_state(1);
+    chassis.turnTo(-71, 69, 1000);
+    lb_mech.move_absolute(-182, 88);
+    pros::delay(230);
+
+    chassis.moveToPoint(-10, -34, 1500, {.forwards=false});
+
+    lb_mech.move_absolute(20, 64);
+    chassis.waitUntilDone();
+    clamp.set_state(0);
+
+    chassis.turnTo(-30, -38, 1500);
+    chassis.moveToPoint(-28, -32, 1600);
+    chassis.moveToPoint(-34, -38, 1600, {.maxSpeed=64});        //move to far ring
+    
+    intake.move_voltage(11000);
+    chassis.waitUntilDone();
+    pros::delay(800);
+    intake.move_voltage(11000);
+    
+}
 
 void blue_ring_rush() {
     clamp.set_state(1);
@@ -441,12 +463,11 @@ void blue_ring_rush() {
     lb_mech.move_absolute(16, 64);
     chassis.waitUntilDone();
     clamp.set_state(0);
-
-    chassis.moveToPoint(-33, -32, 1500);
+    chassis.moveToPoint(-25, -37, 1500);
     intake.move_voltage(11000);
-    chassis.moveToPoint(-36, -34, 1500, {.maxSpeed=30});
+    chassis.moveToPoint(-31, -38, 1500, {.maxSpeed=30});
     chassis.waitUntilDone();
-    pros::delay(600);       //intake far red ring
+    pros::delay(600);       //intake far blue ring
 
     chassis.moveToPoint(-5, -15, 2000);//4
     chassis.waitUntilDone();
@@ -474,11 +495,13 @@ void autonomous() {
     //lb_mech.move_absolute(-180, 80);
     //pros::lcd::print(6, "testing"); // y
     
-
-    //chassis.moveToPoint(0, 24, 9000);
+    //pros::delay(12800);
+    //chassis.moveToPoint(0, 53, 2000);
+    //chassis.waitUntilDone();
+    //autonm.set_state(1);
     //mogo_red();
-    red_ring_rush();
-    
+    blue_ring_rush();
+    //blue_mg_temp();
 }
 
 #define MATH_E  2.718281828459045235360

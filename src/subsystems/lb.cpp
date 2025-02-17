@@ -25,7 +25,7 @@ void update_lb() {
     li2 = input2; 
 
     if (toggle_1 && LB_STATE == LB_LOWERED) {
-        lb_mech.move_absolute(-23, 28);
+        lb_mech.move_absolute(-26, 28);  //-23
         LB_STATE = LB_ARMED1;
         //std::cout << "lower -> armed" << std::endl;
         return;
