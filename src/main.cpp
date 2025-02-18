@@ -389,6 +389,51 @@ void awp_p_left() {    //blue
 #define GREEN_GEAR_RATIO    18
 #define BLUE_GEAR_RATIO     6
 
+void red_mogo_wp(){
+    chassis.turnTo(71, 69, 1000);
+    lb_mech.move_absolute(-190, 88);
+    pros::delay(230);
+
+    chassis.moveToPoint(-11, -31.5, 1500, {.forwards=false, .maxSpeed=95});
+    lb_mech.move_absolute(24, 64);
+    chassis.waitUntilDone();
+    pros::delay(200);
+    chassis.moveToPoint(-11, -32.5, 1500, {.forwards=false, .maxSpeed=10});
+    clamp.set_state(1);
+
+    chassis.turnTo(-25.28, -36.18, 1000);
+    chassis.moveToPoint(-25.28, -39.18, 1500, {.maxSpeed=127}); //move to ring near mogo rush
+    intake.move_voltage(11000);
+    chassis.moveToPoint(-30.54, -40.24, 1500, {.maxSpeed=50});
+    chassis.waitUntilDone();
+    chassis.moveToPoint(-26.54, -40.24, 1500, {.forwards=false, .maxSpeed=40});
+    chassis.waitUntilDone();
+    pros::delay(1000);
+    intake.move_voltage(0);
+    chassis.turnTo(-4.5, -24.7, 1000); //drive to ring near alliance stake
+    chassis.moveToPoint(-4.1, -25, 2000, {.maxSpeed=105});
+    chassis.waitUntilDone();
+    pros::delay(500);
+    autonm.set_state(1); // doink
+    pros::delay(200);
+    chassis.moveToPoint(-15,-25.78, 2000, {.forwards=false, .maxSpeed=90}); //move back
+    chassis.waitUntilDone();
+    autonm.set_state(0); //undoink
+    pros::delay(600);
+    intake.move_voltage(11000); //intake
+    chassis.moveToPoint(-2,-17.68, 2000, {.maxSpeed=105}); //drive forward
+    chassis.waitUntilDone();
+    pros::delay(200);
+    chassis.moveToPoint(-5,-17.68, 2000, {.forwards=false, .maxSpeed=110}); //avoid intaking the blue ring
+    pros::delay(1500);
+    intake.move_voltage(0);
+    pros::delay(300);
+    chassis.turnTo(10.5,-26.5, 1000); //turn to ladder
+    chassis.moveToPoint(10.5,-26, 2000, {.maxSpeed=50}); //move to ladder*/
+    pros::delay(2000);
+
+}
+
 void red_ring_rush() {
     clamp.set_state(1);
     chassis.turnTo(-71, 69, 1000);
@@ -500,7 +545,7 @@ void autonomous() {
     //chassis.waitUntilDone();
     //autonm.set_state(1);
     //mogo_red();
-    blue_ring_rush();
+    red_mogo_wp();
     //blue_mg_temp();
 }
 
