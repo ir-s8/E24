@@ -475,7 +475,6 @@ void red_ring_rush() {
 }    
 
 void blue_mg_temp() {       //1r + 1 as + 1r + 1 mg(keep)
-    clamp.set_state(1);
     chassis.turnTo(-71, 69, 1000);
     lb_mech.move_absolute(-182, 88);
     pros::delay(230);
@@ -484,7 +483,7 @@ void blue_mg_temp() {       //1r + 1 as + 1r + 1 mg(keep)
 
     lb_mech.move_absolute(20, 64);
     chassis.waitUntilDone();
-    clamp.set_state(0);
+    clamp.set_state(1);
 
     chassis.turnTo(-30, -38, 1500);
     chassis.moveToPoint(-28, -32, 1600);
@@ -498,22 +497,36 @@ void blue_mg_temp() {       //1r + 1 as + 1r + 1 mg(keep)
 }
 
 void blue_ring_rush() {
-    clamp.set_state(1);
     chassis.turnTo(71, 69, 1000);
-    lb_mech.move_absolute(-182, 88);
+    lb_mech.move_absolute(-192, 88);
     pros::delay(230);
 
-    chassis.moveToPoint(-10, -34, 1500, {.forwards=false});
-
-    lb_mech.move_absolute(16, 64);
+    chassis.moveToPoint(-10, -30, 1500, {.forwards=false, .maxSpeed=69}); //get mogo
+    chassis.moveToPoint(-10, -33.5, 1500, {.forwards=false, .maxSpeed=30}); //get mogo
+    lb_mech.move_absolute(26, 64);
     chassis.waitUntilDone();
-    clamp.set_state(0);
-    chassis.moveToPoint(-25, -37, 1500);
+    pros::delay(600);
+    clamp.set_state(1);
+    pros::delay(300);
+    chassis.moveToPoint(-25, -37, 1500); //get ring
     intake.move_voltage(11000);
     chassis.moveToPoint(-31, -38, 1500, {.maxSpeed=30});
     chassis.waitUntilDone();
-    pros::delay(600);       //intake far blue ring
+    chassis.moveToPoint(-18.05, -33.21, 1500, {.forwards=false, .maxSpeed=110});
+    chassis.turnTo(-23.50, -44.82, 1000);
+    chassis.moveToPoint(-23.50, -44.82, 1500, {.maxSpeed=80});
+    chassis.moveToPoint(-36.15, -50.94, 1500, {.maxSpeed=110});
+    pros::delay(700);
+    chassis.moveToPoint(-46.67, -50.49, 1500, {.maxSpeed=110});
+    pros::delay(1500);       //intake far blue ringll,,l
+    chassis.moveToPoint(-22.3, -54.92, 2500, {.forwards=false, .maxSpeed=50});
+    chassis.waitUntilDone();
+    pros::delay(2000);
+    intake.move_voltage(0);
 
+
+
+/*
     chassis.moveToPoint(-5, -15, 2000);//4
     chassis.waitUntilDone();
     intake.move_voltage(0);
@@ -533,6 +546,7 @@ void blue_ring_rush() {
     pros::delay(200); 
     intake.move_voltage(0);
     chassis.waitUntilDone();
+    */
 }    
 
 
@@ -545,7 +559,7 @@ void autonomous() {
     //chassis.waitUntilDone();
     //autonm.set_state(1);
     //mogo_red();
-    red_mogo_wp();
+    blue_ring_rush();
     //blue_mg_temp();
 }
 
