@@ -501,7 +501,7 @@ void blue_ring_rush() {
     lb_mech.move_absolute(-192, 88);
     pros::delay(230);
 
-    chassis.moveToPoint(-10, -30, 1500, {.forwards=false, .maxSpeed=69}); //get mogo
+    chassis.moveToPoint(-10, -29, 1500, {.forwards=false, .maxSpeed=65}); //get mogo
     chassis.moveToPoint(-10, -33.5, 1500, {.forwards=false, .maxSpeed=30}); //get mogo
     lb_mech.move_absolute(26, 64);
     chassis.waitUntilDone();
