@@ -184,6 +184,151 @@ void mogo_red(){
     
 }
 
+void skills(){
+    intake.move_voltage(11000);        //Scoring preload onto colored high stake
+    pros::delay(1000);
+    intake.move_voltage(0);             //Turning off intake 
+    chassis.moveToPoint(0,12,1600);
+    chassis.moveToPoint(23,8,1600, {.forwards=false, .maxSpeed=100});  //Going to first mogo
+    pros::delay(1000);
+    clamp.set_state(1); //clamping onto the mogo
+    pros::delay(250); 
+    chassis.turnTo(24,100,1000);
+
+    intake.move_voltage(11000);
+    //pros::delay(1000);
+    chassis.moveToPoint(24,32,1600); //max speed
+    //pros::delay(1000);
+    chassis.moveToPoint(32,40,1600); //max speed
+    //pros::delay(2000);
+    chassis.moveToPoint(48,92,1600); //second ring in mogo or something like that
+    pros::delay(1000); 
+    intake.move_voltage(11000); //intake on
+    chassis.turnTo(63.69,64.975,1000);
+    chassis.moveToPoint(63.69,64.975,1600); //get far ring
+    lb_mech.move_absolute(-29, 28);
+    chassis.moveToPoint(60.9065,74.197685,1200,{.forwards=false});//drive back
+    chassis.turnTo(61.62,77.91,700);//position self to go align up
+    chassis.moveToPoint(46.186,67.689552,1200,{.forwards=false});//drive more back to line up
+    chassis.turnTo(63.64,68.545,700);//turn to stake
+    chassis.moveToPoint(62.5,68.545,1200);//drive to stake
+    intake.move_voltage(0);
+    chassis.waitUntilDone();
+    lb_mech.move_absolute(-182,88);
+    pros::delay(1000);
+    lb_mech.move_absolute(0,88);
+    chassis.moveToPoint(48.866,70.507,1600, {.forwards=false});
+    chassis.turnTo(51.936,5.817,900);
+    intake.move_voltage(11000);
+    chassis.moveToPoint(51.936,35,1600, {.minSpeed=120});
+    chassis.moveToPoint(51.936,10,3000, {.maxSpeed=20});
+    pros::delay(300);
+    chassis.moveToPoint(51.936,5,3000, {.maxSpeed=20});//slowly intake farr rings
+    pros::delay(200);
+    chassis.moveToPoint(51.936,5,1500, {.forwards=false});//drive back so no hit wall
+    chassis.turnTo(58.936,25,1000);
+    chassis.moveToPoint(58.936,25,1500);
+    pros::delay(500);
+    chassis.moveToPoint(61.936,10,4000, {.forwards=false});
+    chassis.waitUntilDone();
+    intake.move_voltage(0);
+    clamp.set_state(0);
+    intake.move_voltage(-100);
+    pros::delay(150);
+    intake.move_voltage(0);
+
+    //test mirroring code
+    chassis.moveToPoint(-1.9,17.57,1600);
+    chassis.turnTo(2.4, 21.64, 1000);
+    chassis.moveToPoint(-14.45,20.83,1600, {.forwards=false, .maxSpeed=70});
+    pros::delay(1000);
+    clamp.set_state(1); //clamping onto the mogo
+    pros::delay(250); 
+    chassis.turnTo(-24,100,1000);
+
+    intake.move_voltage(11000);
+    //pros::delay(1000);
+    chassis.moveToPoint(-24,32,1600); //max speed
+    //pros::delay(1000);
+    chassis.moveToPoint(-32,40,1600); //max speed
+    //pros::delay(2000);
+    chassis.moveToPoint(-48,92,1600); //second ring in mogo or something like that
+    pros::delay(1000); 
+    intake.move_voltage(11000); //intake on
+    chassis.turnTo(-63.69,64.975,1000);
+    chassis.moveToPoint(-63.69,64.975,1600); //get far ring
+    lb_mech.move_absolute(-29, 28);
+    chassis.moveToPoint(-60.9065,74.197685,1200,{.forwards=false});//drive back
+    chassis.turnTo(-61.62,77.91,700);//position self to go align up
+    chassis.moveToPoint(-46.186,67.689552,1200,{.forwards=false});//drive more back to line up
+    chassis.turnTo(-63.64,68.545,700);//turn to stake
+    chassis.moveToPoint(-62.5,68.545,1200);//drive to stake
+    intake.move_voltage(0);
+    chassis.waitUntilDone();
+    lb_mech.move_absolute(-182,88);
+    pros::delay(1000);
+    lb_mech.move_absolute(0,88);
+    chassis.moveToPoint(-48.866,70.507,1600, {.forwards=false});
+    chassis.turnTo(-51.936,5.817,900);
+    intake.move_voltage(11000);
+    chassis.moveToPoint(-51.936,35,1600, {.minSpeed=120});
+    chassis.moveToPoint(-51.936,10,3000, {.maxSpeed=20});
+    pros::delay(300);
+    chassis.moveToPoint(-51.936,5,3000, {.maxSpeed=20});//slowly intake farr rings
+    pros::delay(200);
+    chassis.moveToPoint(-51.936,5,1500, {.forwards=false});//drive back so no hit wall
+    chassis.turnTo(-58.936,25,1000);
+    chassis.moveToPoint(-58.936,25,1500);
+    pros::delay(500);
+    chassis.moveToPoint(-61.936,10,4000, {.forwards=false});
+    chassis.waitUntilDone();
+    intake.move_voltage(0);
+    clamp.set_state(0);
+    intake.move_voltage(-100);
+    pros::delay(150);
+    intake.move_voltage(0);
+
+    //chassis.moveToPoint(60.69,66.975,1600, {.forwards=false}); //avoid hitting wall
+    //chassis.moveToPoint(49.5132,62.517,1600, {.forwards=false}); //go back to line up for lady brown
+    //chassis.turnTo(62.5132,67,1200);
+    //chassis.moveToPoint(63.8,67,1600); //go to high stake
+
+    pros::delay(1000);
+    intake.move_voltage(0);
+    /*
+    chassis.moveToPoint(64,64,1600);
+    lb_mech.move_absolute(-29, 28); 
+    chassis.moveToPoint(64,70,1600);
+    /*
+    chassis.moveToPoint(48,60,1600,{.forwards=false});
+    chassis.turnTo(80,72,1600);
+    chassis.moveToPoint(68,62,1600); //took out the 3200 think
+    chassis.waitUntilDone();
+    intake.move_voltage(0);
+    pros::delay(600);
+    /*
+    lb_mech.move_absolute(-182,88);
+    pros::delay(1000);
+    lb_mech.move_absolute(0,88);
+    pros::delay(500);
+    chassis.moveToPoint(54,62,16000);//original was 58,62
+    pros::delay(1000);
+    chassis.moveToPoint(60,33.4,1600); //i chagned this
+    pros::delay(1000);
+    intake.move_voltage(11000);
+    //chassis.moveToPoint(48,36,1600);
+    //pros::delay(1000);
+    //chassis.turnTo(48,0,1600);
+    chassis.moveToPoint(60,0,1600,{.maxSpeed=50});
+    chassis.moveToPoint(60,12,1600,{.maxSpeed=50});
+    chassis.moveToPoint(66,18,1600,{.forwards=false,.maxSpeed=50});//original 66,24
+    chassis.moveToPoint(56.25,9.53,1600,{.forwards=false,.maxSpeed=50});//original 68,8
+    clamp.set_state(0);
+    //pros::delay(1000);
+    //now go to the corner most ring sort after getting the three rings and do whatever
+    */
+    }
+
 void awp_red() {   //red /w stake
     chassis.moveToPoint(2, -26, 2000, {.forwards=false, .minSpeed=110});    //80
     //chassis.moveToPoint(6, -20, 2000, {.forwards=false, .minSpeed=110});    //80
@@ -559,7 +704,7 @@ void autonomous() {
     //chassis.waitUntilDone();
     //autonm.set_state(1);
     //mogo_red();
-    blue_ring_rush();
+    skills();
     //blue_mg_temp();
 }
 
