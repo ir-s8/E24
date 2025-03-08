@@ -1,13 +1,12 @@
 #include "main.h"
 #include "subsystems/intake.hpp"
 #include "subsystems/lb_mech.hpp"
-using namespace okapi;
 
 extern int AC;
 
 pros::Motor intake(INTAKE_PORT, pros::E_MOTOR_GEAR_BLUE, false);
 pros::Optical color_sensor(COLOR_PORT);
-Timer timer = Timer(2000);
+//Timer timer = Timer(2000);
 
 bool enable_color_task = true;
 
@@ -38,16 +37,17 @@ void update_intake() {
     int color = color_sensor.get_hue();
     bool isRed = abs(color-opposing_alliance_color) < 50;
     
-    if(toggle==true && timer.isDone()){
+    /*if(toggle==true && timer.isDone()){
       speed = 12000;
       toggle=false;
+
     }
     if(isRed){ 
       toggle=true;
       timer.reset();
       speed=6000;
     
-    }
+    }*/
     if(input_3!=last_input){
       color_disabled = !color_disabled;
     } else if (input_1) {
@@ -61,7 +61,7 @@ void update_intake() {
     last_input=input_3;
 }
 
-
+/*
 pros::Task intake_task([&]() {
   if(enable_color_task=true){
     intake.move_voltage(speed);
@@ -85,3 +85,4 @@ void stop_intake(){
   enable_color_task=false;
   speed=0;
 }
+  */

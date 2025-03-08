@@ -434,18 +434,36 @@ void temp() {
 }
 
 void red_mogo_rush(){
-    chassis.moveToPoint(0, 13.867, 1500, {.minSpeed=127});
-    chassis.moveToPoint(-3.5, 22.5, 1500, {.minSpeed=127}); //go as fast as possible to mogo
+    //chassis.moveToPoint(0.5, 16.867, 1500, {.minSpeed=127});
+    chassis.moveToPoint(-1.85, 16.5, 2000, {.maxSpeed=127, .minSpeed=120}); //go as fast as possible to mogo
     chassis.waitUntilDone();
-    pros::delay(200);
+    pros::delay(260);
+    chassis.waitUntilDone();
     autonm.set_state(1); //doinker down
-    pros::delay(300);
-    chassis.moveToPoint(2, 29, 2000, {.forwards=false, .maxSpeed=115, .minSpeed=100}); //drive back
+    pros::delay(450);
+    chassis.moveToPoint(-2.5, 28.5, 2000, {.forwards=false, .maxSpeed=105}); //drive back
     chassis.waitUntilDone();
-    pros::delay(200);
+    pros::delay(350);
     autonm.set_state(0);
     pros::delay(200);
-    //chassis.turnTo(100,0,2000);
+    chassis.turnTo(20,-10,1000);
+    chassis.moveToPoint(-3.8, 37.5, 1000, {.forwards=false, .maxSpeed=105, .minSpeed=100});
+    chassis.waitUntilDone();
+    pros::delay(200);
+    clamp.set_state(1); //clamp mogo
+    pros::delay(150);
+    chassis.turnTo(-9.1, 40.1, 1000);
+    intake.move_voltage(12000);
+    chassis.moveToPoint(-12.1, 33.1, 1000);
+    pros::delay(2000);
+    intake.move_voltage(0);
+    /*
+    intake.move_voltage(12000);
+    chassis.moveToPoint(-17.63, 36.54, 1000, {.minSpeed=127});
+    pros::delay(1000);
+    intake.move_voltage(0);
+    */
+
 }
 
 void awp_blue() {   //blue /w stake
@@ -553,7 +571,7 @@ void red_mogo_wp(){
     lb_mech.move_absolute(-190, 88);
     pros::delay(230);
 
-    chassis.moveToPoint(-11, -31.5, 1500, {.forwards=false, .maxSpeed=95});
+    chassis.moveToPoint(-11, -31, 1000, {.forwards=false, .maxSpeed=105});
     lb_mech.move_absolute(24, 64);
     chassis.waitUntilDone();
     pros::delay(200);
@@ -563,24 +581,24 @@ void red_mogo_wp(){
     chassis.turnTo(-25.28, -36.18, 1000);
     chassis.moveToPoint(-25.28, -39.18, 1500, {.maxSpeed=127}); //move to ring near mogo rush
     intake.move_voltage(11000);
-    chassis.moveToPoint(-30.54, -40.24, 1500, {.maxSpeed=50});
+    chassis.moveToPoint(-29, -40.24, 1500, {.maxSpeed=105});
     chassis.waitUntilDone();
-    chassis.moveToPoint(-26.54, -40.24, 1500, {.forwards=false, .maxSpeed=40});
+    chassis.moveToPoint(-26.54, -40.24, 500, {.forwards=false, .maxSpeed=40});
     chassis.waitUntilDone();
     pros::delay(1000);
     intake.move_voltage(0);
     chassis.turnTo(-4.5, -24.7, 1000); //drive to ring near alliance stake
-    chassis.moveToPoint(-4.1, -25, 2000, {.maxSpeed=105});
+    chassis.moveToPoint(-4.1, -25, 1200, {.maxSpeed=105});
     chassis.waitUntilDone();
     pros::delay(500);
     autonm.set_state(1); // doink
     pros::delay(200);
-    chassis.moveToPoint(-15,-25.78, 2000, {.forwards=false, .maxSpeed=90}); //move back
+    chassis.moveToPoint(-15,-25.78, 1200, {.forwards=false, .maxSpeed=90}); //move back
     chassis.waitUntilDone();
     autonm.set_state(0); //undoink
     pros::delay(600);
     intake.move_voltage(11000); //intake
-    chassis.moveToPoint(-2,-17.68, 2000, {.maxSpeed=105}); //drive forward
+    chassis.moveToPoint(-2,-17.68, 1200, {.maxSpeed=105}); //drive forward
     chassis.waitUntilDone();
     pros::delay(200);
     chassis.moveToPoint(-5,-17.68, 2000, {.forwards=false, .maxSpeed=110}); //avoid intaking the blue ring
@@ -594,6 +612,53 @@ void red_mogo_wp(){
 }
 
 void red_ring_rush() {
+    chassis.moveToPoint(-0.27, 13.116123, 500, {.minSpeed=127});
+    pros::delay(1000);
+    intake.move_voltage(12000);
+    pros::delay(340);
+    intake.move_voltage(0);
+    pros::delay(500);
+    //chassis.turnTo(9.126980, 30.740419, 1000);
+    chassis.moveToPoint(9.226980, 27.240419, 1000, {.forwards=false, .maxSpeed=75});
+    chassis.waitUntilDone();
+    pros::delay(100);
+    clamp.set_state(1);
+    intake.move_voltage(12000);
+    pros::delay(1000);
+    chassis.turnTo(-10.8799, 32.312, 700);
+    chassis.moveToPoint(-2, 31.312, 700, {.minSpeed=127}); //close ring
+    chassis.waitUntilDone();
+//doinking part
+
+    pros::delay(500);
+    chassis.moveToPoint(-3.288, 33.246822, 500, {.forwards=false}); //turn to get mogo ring
+    chassis.turnTo(-8.9,40.6,400);
+    chassis.moveToPoint(-8.9,39.6,500);
+    chassis.waitUntilDone();
+    pros::delay(300);
+    autonm.set_state(1);
+    pros::delay(200);
+    chassis.moveToPoint(-8.9, 19.246822, 500, {.forwards=false});
+    chassis.waitUntilDone();
+    autonm.set_state(0);
+    chassis.moveToPoint(-8.9, 23.246822, 500, {.minSpeed=110});
+    pros::delay(2000);
+    intake.move_voltage(0);
+    /*
+    pros::delay(2000);
+    chassis.moveToPoint(3.637261, 30.694471, 700, {.forwards=false});
+    chassis.turnTo(-23, -1, 1000);
+    chassis.moveToPoint(-24, -2.2, 1000, {.minSpeed=127}); //ram corner
+    chassis.moveToPoint(-10.736235, 4.442460, 1000, {.forwards=false, .minSpeed=127});;
+    chassis.turnTo(-17,0,500);
+    chassis.moveToPoint(-17, 0, 1000);
+    chassis.waitUntilDone();
+    pros::delay(1000);
+    intake.move_voltage(0);
+    */
+
+
+    /*
     clamp.set_state(1);
     chassis.turnTo(-71, 69, 1000);
     lb_mech.move_absolute(-182, 88);
@@ -630,6 +695,7 @@ void red_ring_rush() {
     pros::delay(800); 
     intake.move_voltage(0);
     chassis.waitUntilDone();
+    */
 
 }    
 
@@ -710,8 +776,14 @@ void blue_ring_rush() {
 
 
 void autonomous() {
-    chassis.calibrate();
-    red_mogo_rush();
+    //chassis.calibrate();
+    red_ring_rush();
+    /*while (true) {
+        pros::delay(100);
+        std::cout << imu.get_heading() << std::endl;
+    }
+        */
+
 }
 
 #define MATH_E  2.718281828459045235360
@@ -743,6 +815,7 @@ void opcontrol() {
         pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
         pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
         pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
+        pros::lcd::print(3, "IMU: %f", imu.get_heading());
 
 
     
